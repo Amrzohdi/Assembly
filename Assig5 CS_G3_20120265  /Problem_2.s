@@ -1,47 +1,26 @@
 .data
-	string1:	 .asciiz	""
+	string1:	 .asciiz	"Enter The factorial Number"
 .text
 
-pal:
-	la $s0, string1
-	la $s1, string1
-	lb $s2, ($s1)
-	loop:
-		beqz $s2, cont
-		addi $s1, $s1, 1
-		lb $s2, ($s1)
-	j loop
-	cont:
-		
-	addi $s1, $s1, -2
-	li $a0, 0
+small_latter:
+	li $s0, 1
+	li $s2, 122
+	li $s3, 97
+	bgt $s1, $s2, jump
+	bst $s1, $s3, jump
+	li $s0, 0
+	jump:
+		ja $ra
 
-	loop1:
-	bge $s0, $s1, to_main
-		lb $s2, ($s0)
-		lb $s3, ($s1)
-		addi $s0, $s0, 1
-		addi $s1, $s1, -1
-	beq $s2, $s3, loop1
+count_number_of_small_letter:
+	
+	beqz $s3, 
 
-	li $a0,1
 
-	to_main:
-	jr $ra
+
 .globl main
  	main:
  		la $a0, string1
- 		
- 		li $v0, 8
- 		syscall
- 		
- 		jal pal
 
- 		
- 		
- 		exit:
- 			li $v0, 1
- 			syscall
- 			li $v0, 10
- 			syscall
+
  .end main
